@@ -15,13 +15,19 @@ export default (state = [], action) => {
       return [...state];
 
     case 'CHANGE_ITEM':
-      const item1 = state.find(s => s.id === action.id);
-      item1.isComplete = !item1.isComplete;
+      const changedItemStatus = state.find(s => s.id === action.id);
+      changedItemStatus.isComplete = !changedItemStatus.isComplete;
 
       return [...state];
 
     case 'GET_LIST':
       return [...state]
+
+    case 'CHANGE_ITEM_VALUE':
+      const changedItemValue = state.find(s => s.id === action.id)
+      changedItemValue.value = action.text
+
+      return [...state];
     default:
       return state;
   }

@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeItemStatus: (id) => dispatch(actions.changeTodoItemStatus(id)),
-    modifyValue: () => dispatch(),
+    modifyValue: (id, text) => dispatch(actions.changeItemValue(id, text)),
     getList: () => dispatch(actions.getList())
   }
 }

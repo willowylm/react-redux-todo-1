@@ -23,3 +23,11 @@ export const changeTodoItemStatus = (id) => {
     id
   }
 }
+
+export const changeItemValue = (id, text) => {
+  return {
+    type: 'CHANGE_ITEM_VALUE',
+    id,
+    text
+  }
+}
