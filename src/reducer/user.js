@@ -1,6 +1,7 @@
-export default (state = {name: 'zhangsan'}, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case 'GET_USER':
+      state = {name: 'zhangsan'}
       return {
         ...state
       }
