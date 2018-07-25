@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import './App.css';
 import UserInfo from './UserInfo';
 import TodoAdd from './TodoAdd';
+import TodoList from "./TodoList";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
       <div className="offset-md-3 col-md-6">
         <UserInfo/>
         <TodoAdd/>
+        <TodoList/>
       </div>
     );
   }
