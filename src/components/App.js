@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import logo from '../logo.svg';
 import './App.css';
+import UserInfo from './UserInfo';
+import TodoAdd from './TodoAdd';
 
 class App extends Component {
   render() {
-    console.log(this.props.user, '===========')
+    console.log(this.props.list)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="offset-md-3 col-md-6">
+        <UserInfo/>
+        <TodoAdd/>
       </div>
     );
   }
@@ -22,7 +18,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    list: state.list
   }
 }
 
