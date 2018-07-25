@@ -1,6 +1,15 @@
 let id = 1
 
-export default (state = [], action) => {
+const searchList = (list, searchText) => {
+  let filterList = list.filter(item => item.value.includes(searchText));
+  if (searchText === '') {
+    filterList = list;
+  }
+
+  return filterList;
+}
+
+export default (state = {filteredList: [], list: [], searchedText: ''}, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       const item = {
@@ -10,24 +19,29 @@ export default (state = [], action) => {
       }
 
       id++;
-      state.push(item);
+      state.list.push(item);
 
-      return [...state];
+      return Object.assign({}, {...state}, {filteredList: [...searchList(state.list, state.searchedText)]});
 
     case 'CHANGE_ITEM':
-      const changedItemStatus = state.find(s => s.id === action.id);
+      const changedItemStatus = state.list.find(s => s.id === action.id);
       changedItemStatus.isComplete = !changedItemStatus.isComplete;
 
-      return [...state];
+      return Object.assign({}, {...state}, {filteredList: [...searchList(state.list, state.searchedText)]});
 
     case 'GET_LIST':
-      return [...state]
+      return Object.assign({}, {...state}, {filteredList: [...searchList(state.list, state.searchedText)]});
 
     case 'CHANGE_ITEM_VALUE':
-      const changedItemValue = state.find(s => s.id === action.id)
+      const changedItemValue = state.list.find(s => s.id === action.id)
       changedItemValue.value = action.text
 
-      return [...state];
+      return Object.assign({}, {...state}, {filteredList: [...searchList(state.list, state.searchedText)]});
+
+    case 'SEARCH_LIST':
+
+      return Object.assign({}, {...state}, {filteredList: [...searchList(state.list, action.value)], searchedText: action.value});
+
     default:
       return state;
   }

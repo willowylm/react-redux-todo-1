@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import user from './user'
-import list from './todoItem';
+import todo from './todoItem';
 
 export default combineReducers({
   user,
-  list
+  todo
 });

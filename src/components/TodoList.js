@@ -56,7 +56,7 @@ class TodoList extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    list: state.list
+    list: state.todo.filteredList
   }
 }
 
