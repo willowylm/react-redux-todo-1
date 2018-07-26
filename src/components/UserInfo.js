@@ -10,7 +10,7 @@ class UserInfo extends PureComponent {
   render() {
     return <div>
       <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="">
           {this.props.user.name}
         </a>
       </nav>

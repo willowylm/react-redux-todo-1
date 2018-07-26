@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import {connect} from 'react-redux'
 import './App.css';
 import UserInfo from './UserInfo';
 import TodoAdd from './TodoAdd';
@@ -18,4 +19,4 @@ class App extends PureComponent {
   }
 }
 
-export default App;
+export default connect()(App);
