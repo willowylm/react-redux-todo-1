@@ -54,9 +54,19 @@ class TodoList extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
+const searchList = (list, searchedText) => {
+  let filteredList = list.filter(item => item.value.includes(searchedText));
+  if (searchedText === '') {
+    filteredList = list;
+  }
+
+  return filteredList;
+}
+
+const mapStateToProps = ({todo}) => {
+  const {list, searchedText} = todo
   return {
-    list: state.todo.filteredList
+    list: searchList(list, searchedText)
   }
 }
 
