@@ -56,7 +56,7 @@ class TodoList extends PureComponent {
 
 const searchList = (list, searchedText) => {
   let filteredList = list.filter(item => item.value.includes(searchedText));
-  if (searchedText === '') {
+  if (!searchedText) {
     filteredList = list;
   }
 
