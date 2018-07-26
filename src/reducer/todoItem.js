@@ -6,7 +6,8 @@ export default (state = {list: [], searchedText: ''}, action) => {
       const item = {
         id: id,
         value: action.text,
-        isComplete: false
+        isComplete: false,
+        date: Date.now()
       }
 
       id++;

@@ -19,4 +19,4 @@ class App extends PureComponent {
   }
 }
 
-export default connect()(App);
+export default App;
