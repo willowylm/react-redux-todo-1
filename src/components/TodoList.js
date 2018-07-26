@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import {connect} from 'react-redux'
 import InputText from './InputText';
 import * as actions from '../actions'
+import { Link } from 'react-router-dom';
 
 class TodoList extends PureComponent {
   componentDidMount() {
@@ -27,24 +28,26 @@ class TodoList extends PureComponent {
                 />
               </div>
               <div className="col-md-8 mb-2">
-                {item.isComplete ? (
-                  <div
-                    style={{
-                      marginTop: '7px',
-                      marginBottom: '7px',
-                      lineHeight: 1.5
-                    }}
-                  >
-                    <del>{item.value}</del>
-                  </div>
-                ) : (
-                  <InputText
-                    item={item}
-                    modifyValue={value =>
-                      this.props.modifyValue(item.id, value)
-                    }
-                  />
-                )}
+                <Link to={`/item/${item.id}`}>
+                  {item.isComplete ? (
+                    <div
+                      style={{
+                        marginTop: '7px',
+                        marginBottom: '7px',
+                        lineHeight: 1.5
+                      }}
+                    >
+                      <del>{item.value}</del>
+                    </div>
+                  ) : (
+                    <InputText
+                      item={item}
+                      modifyValue={value =>
+                        this.props.modifyValue(item.id, value)
+                      }
+                    />
+                  )}
+                </Link>
               </div>
             </div>
           );
