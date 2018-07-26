@@ -11,6 +11,7 @@ import './index.css';
 import App from './components/App';
 import reducer from './reducer'
 import registerServiceWorker from './registerServiceWorker';
+import ItemInfo from "./components/ItemInfo";
 
 const middleware = [ thunk ];
 const history = createHistory();
@@ -25,6 +26,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <Switch>
         <Route path='/app' component={App}/>
+        <Route path='/item/:id' component={ItemInfo}/>
       </Switch>
     </ConnectedRouter>
   </Provider>, document.getElementById('root'));

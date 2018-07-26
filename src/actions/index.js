@@ -48,3 +48,8 @@ export const searchItems = (value) => {
     value
   }
 }
+
+export const getItemById = id => ({
+  type: 'GET_ITEM',
+  id
+})
