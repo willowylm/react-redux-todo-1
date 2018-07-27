@@ -28,7 +28,7 @@ class TodoList extends PureComponent {
                 />
               </div>
               <div className="col-md-8 mb-2">
-                <Link to={`/item/${item.id}`}>
+                <Link to={`/items/${item.id}`}>
                   {item.isComplete ? (
                     <div
                       style={{

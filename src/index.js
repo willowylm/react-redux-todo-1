@@ -26,7 +26,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <Switch>
         <Route path='/app' component={App}/>
-        <Route path='/item/:id' component={ItemInfo}/>
+        <Route path='/items/:id' component={ItemInfo}/>
       </Switch>
     </ConnectedRouter>
   </Provider>, document.getElementById('root'));

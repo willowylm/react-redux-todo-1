@@ -25,21 +25,11 @@ export const changeTodoItemStatus = (id) => {
 }
 
 export const changeItemValue = (id, text) => dispatch => {
-
-  // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-  //   .then(response => response.json())
-  //   .then(json => dispatch(receivePosts(subreddit, json)))
-  console.log(id, text)
   dispatch({
     type: 'CHANGE_ITEM_VALUE',
     id,
     text
   })
-  // return {
-  //   type: 'CHANGE_ITEM_VALUE',
-  //   id,
-  //   text
-  // }
 }
 
 export const searchItems = (value) => {

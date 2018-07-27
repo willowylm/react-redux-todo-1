@@ -5,7 +5,7 @@ import { Field, reduxForm, formValueSelector } from 'redux-form'
 
 class SearchItem extends PureComponent {
   render() {
-    const {handleSubmit, pristine, reset, submitting} = this.props;
+    const {handleSubmit, reset} = this.props;
 
     return (
       <div className="row mt-5">
