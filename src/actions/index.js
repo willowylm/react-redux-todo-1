@@ -11,10 +11,10 @@ export const getUser = () => {
   }
 }
 
-export const getList = () => {
-  return {
-    type: 'GET_LIST'
-  }
+export const getList = () => dispatch => {
+  return fetch('/api/todos')
+    .then(response => response.json())
+    .then(json => dispatch({type: 'GET_LIST', todos: json}))
 }
 
 export const changeTodoItemStatus = (id) => {

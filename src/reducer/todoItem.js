@@ -1,9 +1,6 @@
 let id = 2
 
-export default (state = {list: [{id: 1,
-    value: '000',
-    isComplete: false,
-    date: Date.now()}], searchedText: '', item: {}}, action) => {
+export default (state = {list: [], searchedText: '', item: {}}, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       const item = {
@@ -27,7 +24,7 @@ export default (state = {list: [{id: 1,
       return Object.assign({}, state, {list: [...changeItemList]});
 
     case 'GET_LIST':
-      return Object.assign({}, state, {list: [...state.list]});
+      return Object.assign({}, state, {list: [...action.todos]});
 
     case 'CHANGE_ITEM_VALUE':
       const changeItemValueList = [...state.list]
