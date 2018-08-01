@@ -1,8 +1,15 @@
-export const addTodoItem = (text) => {
-  return {
-    type: 'ADD_TODO',
-    text
-  }
+export const addTodoItem = (text) => dispatch => {
+  const data = {value: text, isComplete: false, date: Date.now()}
+
+  return fetch('/api/todos', {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(response => response.json())
+    .then(json => dispatch(getList()))
 }
 
 export const getUser = () => {
@@ -17,11 +24,16 @@ export const getList = () => dispatch => {
     .then(json => dispatch({type: 'GET_LIST', todos: json}))
 }
 
-export const changeTodoItemStatus = (id) => {
-  return {
-    type: 'CHANGE_ITEM',
-    id
-  }
+export const changeTodoItemStatus = (item) => dispatch => {
+  return fetch(`/api/todos/${item.id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "PUT",
+    body: JSON.stringify(item)
+  }).then(response => response.json())
+    .then(json => dispatch(getList()))
 }
 
 export const changeItemValue = (id, text) => dispatch => {

@@ -10,8 +10,9 @@ class TodoList extends PureComponent {
     this.props.getList();
   }
 
-  clickCheckbox = id => {
-    this.props.changeItemStatus(id);
+  clickCheckbox = item => {
+    item.isComplete = !item.isComplete;
+    this.props.changeItemStatus(item);
   };
 
   render() {
@@ -26,7 +27,7 @@ class TodoList extends PureComponent {
                     type="checkbox"
                     style={{ marginTop: '11px', lineHeight: 1.5 }}
                     defaultChecked={item.isComplete}
-                    onClick={this.clickCheckbox.bind(this, item.id)}
+                    onClick={this.clickCheckbox.bind(this, item)}
                   />
                 </div>
                 <div className="col-md-8 mb-2">
@@ -79,7 +80,7 @@ const mapStateToProps = ({todo}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeItemStatus: (id) => dispatch(actions.changeTodoItemStatus(id)),
+    changeItemStatus: (item) => dispatch(actions.changeTodoItemStatus(item)),
     modifyValue: (id, text) => dispatch(actions.changeItemValue(id, text)),
     getList: () => dispatch(actions.getList())
   }
