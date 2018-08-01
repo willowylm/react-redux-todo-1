@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import InputText from './InputText';
 import * as actions from '../actions'
 import { Link } from 'react-router-dom';
+import Task from './Task'
 
 class TodoList extends PureComponent {
   componentDidMount() {
@@ -18,37 +19,40 @@ class TodoList extends PureComponent {
       <div className="mt-5">
         {this.props.list.map(item => {
           return (
-            <div key={item.id} className="row">
-              <div className="col-md-1 offset-md-1">
-                <input
-                  type="checkbox"
-                  style={{ marginTop: '11px', lineHeight: 1.5 }}
-                  defaultChecked={item.isComplete}
-                  onClick={this.clickCheckbox.bind(this, item.id)}
-                />
+            <div key={item.id}>
+              <div className="row">
+                <div className="col-md-1 offset-md-1">
+                  <input
+                    type="checkbox"
+                    style={{ marginTop: '11px', lineHeight: 1.5 }}
+                    defaultChecked={item.isComplete}
+                    onClick={this.clickCheckbox.bind(this, item.id)}
+                  />
+                </div>
+                <div className="col-md-8 mb-2">
+                  <Link to={`/items/${item.id}`}>
+                    {item.isComplete ? (
+                      <div
+                        style={{
+                          marginTop: '7px',
+                          marginBottom: '7px',
+                          lineHeight: 1.5
+                        }}
+                      >
+                        <del>{item.value}</del>
+                      </div>
+                    ) : (
+                      <InputText
+                        item={item}
+                        modifyValue={value =>
+                          this.props.modifyValue(item.id, value)
+                        }
+                      />
+                    )}
+                  </Link>
+                </div>
               </div>
-              <div className="col-md-8 mb-2">
-                <Link to={`/items/${item.id}`}>
-                  {item.isComplete ? (
-                    <div
-                      style={{
-                        marginTop: '7px',
-                        marginBottom: '7px',
-                        lineHeight: 1.5
-                      }}
-                    >
-                      <del>{item.value}</del>
-                    </div>
-                  ) : (
-                    <InputText
-                      item={item}
-                      modifyValue={value =>
-                        this.props.modifyValue(item.id, value)
-                      }
-                    />
-                  )}
-                </Link>
-              </div>
+              <Task tasks={item.tasks}/>
             </div>
           );
         })}
