@@ -4,8 +4,16 @@ import InputText from './InputText';
 import * as actions from '../actions'
 import { Link } from 'react-router-dom';
 import Task from './Task'
+import TaskAdd from "./TaskAdd";
 
 class TodoList extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: null
+    }
+  }
+
   componentDidMount() {
     this.props.getList();
   }
@@ -14,6 +22,11 @@ class TodoList extends PureComponent {
     item.isComplete = !item.isComplete;
     this.props.changeItemStatus(item);
   };
+
+  selectCurrent = (id) => {
+    console.log(id)
+    this.setState({current: id})
+  }
 
   render() {
     return (
@@ -30,7 +43,7 @@ class TodoList extends PureComponent {
                     onClick={this.clickCheckbox.bind(this, item)}
                   />
                 </div>
-                <div className="col-md-8 mb-2">
+                <div className="col-md-6 mb-2">
                   <Link to={`/items/${item.id}`}>
                     {item.isComplete ? (
                       <div
@@ -52,8 +65,16 @@ class TodoList extends PureComponent {
                     )}
                   </Link>
                 </div>
+                <div className="col-md-2">
+                  <button
+                    className="btn btn-primary"
+                    onClick={this.selectCurrent.bind(this, item.id)}>
+                    +
+                  </button>
+                </div>
               </div>
               <Task tasks={item.tasks}/>
+              <TaskAdd id={item.id} current={this.state.current}/>
             </div>
           );
         })}

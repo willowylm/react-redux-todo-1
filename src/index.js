@@ -12,6 +12,7 @@ import App from './components/App';
 import reducer from './reducer'
 import registerServiceWorker from './registerServiceWorker';
 import ItemInfo from "./components/ItemInfo";
+import User from "./components/User";
 
 const middleware = [ thunk ];
 const history = createHistory();
@@ -26,6 +27,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <Switch>
         <Route path='/app' component={App}/>
+        <Route path='/user' component={User}/>
         <Route path='/items/:id' component={ItemInfo}/>
       </Switch>
     </ConnectedRouter>
