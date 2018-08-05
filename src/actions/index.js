@@ -1,48 +1,19 @@
-import Cookies from 'js-cookie'
-
-const token = Cookies.getJSON('token');
+import {get, post, put} from "../httpRequest";
 
 export const addTodoItem = (text) => dispatch => {
   const data = {value: text, isComplete: false, date: Date.now()}
 
-  return fetch('/api/todos', {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': token
-    },
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(response => response.json())
+  return post('/api/todos', data)
     .then(json => dispatch(getList()))
 }
 
-export const getUser = () => {
-  return {
-    type: 'GET_USER'
-  }
-}
-
 export const getList = () => dispatch => {
-  return fetch('/api/todos',{
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': token
-    }
-  }).then(response => response.json())
+  return get('/api/todos')
     .then(json => dispatch({type: 'GET_LIST', todos: json}))
 }
 
 export const changeTodoItemStatus = (item) => dispatch => {
-  return fetch(`/api/todos/${item.id}`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': token
-    },
-    method: "PUT",
-    body: JSON.stringify(item)
-  }).then(response => response.json())
+  return put(`/api/todos/${item.id}`, item)
     .then(json => dispatch(getList()))
 }
 

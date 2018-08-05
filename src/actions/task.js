@@ -1,19 +1,9 @@
 import {getList} from "./index";
-import Cookies from 'js-cookie'
-
-const token = Cookies.getJSON('token');
+import {post} from "../httpRequest";
 
 export const addTask = (text, id) => dispatch => {
   const data = {content: text, todoId: id}
 
-  return fetch('/api/tasks', {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': token
-    },
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(response => response.json())
+  return post('/api/tasks', data)
     .then(json => dispatch(getList()))
 }
