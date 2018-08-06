@@ -38,9 +38,7 @@ export default (state = {list: [], searchedText: '', item: {}}, action) => {
       return Object.assign({}, state, {searchedText: action.value});
 
     case 'GET_ITEM':
-      const findedItem = state.list.find(item => item.id === action.id);
-
-      return Object.assign({}, state, {item: {...findedItem}});
+      return Object.assign({}, state, {item: {...action.data}});
     default:
       return state;
   }

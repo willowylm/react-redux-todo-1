@@ -32,7 +32,7 @@ export const searchItems = (value) => {
   }
 }
 
-export const getItemById = id => ({
-  type: 'GET_ITEM',
-  id
-})
+export const getItemById = id => dispatch =>{
+  return get(`/api/todos/${id}`)
+    .then(json => dispatch({type: 'GET_ITEM', data: json}))
+}

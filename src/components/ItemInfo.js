@@ -13,8 +13,6 @@ class ItemInfo extends PureComponent {
   render() {
     const {item} = this.props
     const date = new Date();
-
-    console.log(item);
     date.setTime(item.date);
     return (<div className="col-md-6 offset-md-3 mt-2">
       <Link to='/app'>返回</Link>
